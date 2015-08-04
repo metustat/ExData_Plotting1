@@ -4,29 +4,18 @@ unzip("data.zip",list=TRUE)
 data<-read.csv2(unz("data.zip","household_power_consumption.txt"),
                 header=TRUE,colClasses=c("character"))
 
-str(data)
+options(warn=-1)
 for(i in 3:9){
         class(data[,i])<-"numeric"
 }
-sapply(data,class)
-summary(data)
-
-object.size(data)
-
-library("lubridate")
-temp<-data[,1]
-dtemp<-dmy(temp)
+options(warn=0)
 
 library("dplyr")
 names(data)
 data[,1]<-as.Date(data[,1],"%d/%m/%Y")
-fil_data<-filter(data,Date=="2007-02-01"|Date=="2007-02-02")
-
-summary(fil_data)
-str(fil_data)
-
-data$Time<-strptime(data$Time,format="%H:%M:%S",tz="UCT")
-
+library(chron)
+data[,2]<-chron(times=data[,2])
+fil_data<-filter(data,Date=="2007-02-01" | Date=="2007-02-02")
 png(file="plot4.png")
 par(mfrow=c(2,2))
 

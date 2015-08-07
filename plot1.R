@@ -17,11 +17,10 @@ library(chron)
 data[,2]<-chron(times=data[,2])
 fil_data<-filter(data,Date=="2007-02-01" | Date=="2007-02-02")
 
-
+png(file = "plot1.png",height = 480, width = 480)
 with(fil_data,hist(Global_active_power,col="red2",
                xlab="Global Active Power (kilowatts)",ylab="Frequency",
                main="Global Active Power",xlim=c(0,6)))
-dev.copy(png,"plot1.png")
 dev.off()
 
 

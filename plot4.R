@@ -16,9 +16,10 @@ data[,1]<-as.Date(data[,1],"%d/%m/%Y")
 library(chron)
 data[,2]<-chron(times=data[,2])
 fil_data<-filter(data,Date=="2007-02-01" | Date=="2007-02-02")
-png(file="plot4.png")
-par(mfrow=c(2,2))
 
+
+png(file="plot4.png", width = 480, height = 480)
+par(mfrow=c(2,2))
 with(fil_data,plot(Global_active_power,xaxt="n",type="l",xlab="",ylab=""))
 axis(1,c(0,1440,2880),labels=c("Thu","Fri","Sat"))
 title(ylab="Global Active Power (kilowatts)")

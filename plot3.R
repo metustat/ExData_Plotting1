@@ -18,6 +18,7 @@ data[,2]<-chron(times=data[,2])
 fil_data<-filter(data,Date=="2007-02-01" | Date=="2007-02-02")
 
 
+png(file = "plot3.png", height = 480, width = 480)
 with(fil_data,
 {
         plot(Sub_metering_1,col="black",type="l",xlab="",ylab="",xaxt="n")
@@ -28,6 +29,5 @@ with(fil_data,
 legend("topright",col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=1)
 title(ylab="Energy sub metering")
 axis(1,c(0,1440,2880),labels=c("Thu","Fri","Sat"))
-dev.copy(png,"plot3.png")
 dev.off()
 
